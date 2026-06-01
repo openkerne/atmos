@@ -31,7 +31,6 @@
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
 
         body {
@@ -299,9 +298,7 @@
         }
 
         /* ── Philosophy ── */
-        .philosophy {
-            position: relative;
-        }
+        .philosophy { position: relative; }
         .philosophy-inner {
             background: var(--bg-elevated);
             border: 1px solid var(--border);
@@ -352,11 +349,126 @@
         .fact-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
         .fact-item p { font-size: 13px; color: var(--fg-muted); line-height: 1.5; }
 
-        /* ── Download CTA ── */
-        .download-cta {
-            text-align: center;
-            padding: 120px 24px;
+        /* ── Contribute / Donate ── */
+        .contribute-section { text-align: center; position: relative; }
+        .contribute-inner {
+            position: relative;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 64px 48px;
+            overflow: hidden;
         }
+        .contribute-inner::before {
+            content: '';
+            position: absolute;
+            bottom: -120px; left: 50%; transform: translateX(-50%);
+            width: 500px; height: 300px;
+            background: radial-gradient(ellipse, rgba(212,148,58,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .contribute-inner .section-desc { margin: 0 auto 48px; }
+        .donate-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 680px;
+            margin: 0 auto 40px;
+            position: relative;
+            z-index: 2;
+        }
+        .donate-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 36px 24px 32px;
+            text-decoration: none;
+            color: var(--fg);
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .donate-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.35s ease;
+        }
+        .donate-card:hover {
+            border-color: var(--accent-border);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(212, 148, 58, 0.08);
+        }
+        .donate-card:hover::before { transform: scaleX(1); }
+        .donate-card:active { transform: translateY(-1px) scale(0.98); }
+        .donate-amount {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            color: var(--fg);
+            line-height: 1;
+        }
+        .donate-amount .currency {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--fg-muted);
+            vertical-align: super;
+            margin-right: 2px;
+        }
+        .donate-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--fg-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .donate-desc {
+            font-size: 13px;
+            color: var(--fg-dim);
+            line-height: 1.5;
+            margin-top: 4px;
+        }
+        .donate-card-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            margin-top: 8px;
+            font-size: 14px; font-weight: 600;
+            color: var(--accent);
+            transition: gap 0.2s;
+        }
+        .donate-card:hover .donate-card-cta { gap: 12px; }
+        .donate-custom {
+            font-size: 14px; color: var(--fg-dim);
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            position: relative; z-index: 2;
+        }
+        .donate-custom a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+        .donate-custom a:hover { border-bottom-color: var(--accent); }
+        .donate-trust {
+            display: flex; align-items: center; justify-content: center; gap: 24px;
+            margin-top: 36px;
+            position: relative; z-index: 2;
+            flex-wrap: wrap;
+        }
+        .donate-trust-item {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 13px; color: var(--fg-dim);
+        }
+        .donate-trust-item i { color: var(--terminal-green); font-size: 12px; }
+
+        /* ── Download CTA ── */
+        .download-cta { text-align: center; padding: 120px 24px; }
         .download-cta .section-title { margin-bottom: 12px; }
         .download-cta .section-desc { margin: 0 auto 40px; }
         .download-meta {
@@ -413,10 +525,7 @@
             padding: 0 16px;
             gap: 8px;
         }
-        .terminal-dot {
-            width: 12px; height: 12px;
-            border-radius: 50%;
-        }
+        .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
         .terminal-dot.red { background: #ff5f57; }
         .terminal-dot.yellow { background: #febc2e; }
         .terminal-dot.green { background: #28c840; }
@@ -426,61 +535,28 @@
             font-size: 12px; color: #555;
             margin-right: 52px;
         }
-        .terminal-body {
-            padding: 32px;
-            font-family: var(--font-mono);
-        }
-        .terminal-line {
-            font-size: 13px; color: #555;
-            margin-bottom: 8px;
-        }
+        .terminal-body { padding: 32px; font-family: var(--font-mono); }
+        .terminal-line { font-size: 13px; color: #555; margin-bottom: 8px; }
         .terminal-line .prompt { color: var(--terminal-green); }
         .terminal-line .cmd { color: #888; }
-        .hash-container {
-            margin: 24px 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1px;
-            line-height: 1;
-        }
+        .hash-container { margin: 24px 0; display: flex; flex-wrap: wrap; gap: 1px; line-height: 1; }
         .hash-char {
             display: inline-block;
-            font-size: 16px;
-            font-weight: 500;
+            font-size: 16px; font-weight: 500;
             color: #333;
             transition: color 0.15s, text-shadow 0.3s;
-            width: 9.6px;
-            text-align: center;
+            width: 9.6px; text-align: center;
         }
         .hash-char.locked {
             color: var(--terminal-green);
             text-shadow: 0 0 8px rgba(74,222,128,0.3);
         }
-        .terminal-status {
-            font-size: 13px;
-            color: #555;
-            margin-top: 8px;
-            min-height: 20px;
-            transition: color 0.3s;
-        }
+        .terminal-status { font-size: 13px; color: #555; margin-top: 8px; min-height: 20px; transition: color 0.3s; }
         .terminal-status.verified { color: var(--terminal-green); }
-        .terminal-countdown {
-            font-size: 12px;
-            color: #444;
-            margin-top: 8px;
-            min-height: 18px;
-        }
-        .terminal-progress {
-            width: 100%;
-            height: 2px;
-            background: #1a1a1a;
-            border-radius: 2px;
-            margin-top: 20px;
-            overflow: hidden;
-        }
+        .terminal-countdown { font-size: 12px; color: #444; margin-top: 8px; min-height: 18px; }
+        .terminal-progress { width: 100%; height: 2px; background: #1a1a1a; border-radius: 2px; margin-top: 20px; overflow: hidden; }
         .terminal-progress-bar {
-            height: 100%;
-            width: 0%;
+            height: 100%; width: 0%;
             background: var(--terminal-green);
             border-radius: 2px;
             transition: width 0.1s linear;
@@ -493,10 +569,7 @@
             transform: translateY(30px);
             transition: opacity 0.7s ease, transform 0.7s ease;
         }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
         /* ── Toast ── */
         .toast {
@@ -526,6 +599,9 @@
             .hash-char { font-size: 12px; width: 7.2px; }
             footer { padding: 32px 20px; flex-direction: column; text-align: center; }
             .download-meta { flex-direction: column; gap: 12px; }
+            .donate-grid { grid-template-columns: 1fr; max-width: 320px; }
+            .contribute-inner { padding: 48px 24px; }
+            .donate-trust { gap: 16px; }
         }
 
         /* ── Reduced Motion ── */
@@ -567,6 +643,7 @@
         <div class="nav-links">
             <a href="#features">Features</a>
             <a href="#philosophy">Philosophy</a>
+            <a href="#contribute">Contribute</a>
             <a href="#download" class="nav-download-btn" id="nav-download">Download</a>
         </div>
     </nav>
@@ -669,6 +746,47 @@
             </div>
         </section>
 
+        <!-- Contribute -->
+        <section id="contribute" class="contribute-section">
+            <div class="contribute-inner reveal">
+                <p class="section-label">Support the Project</p>
+                <h2 class="section-title">Help Atmos keep growing</h2>
+                <p class="section-desc">Atmos is built by a small team with no venture funding, no corporate sponsors, and no ads. Your contribution directly funds development, hardware testing, and infrastructure.</p>
+
+                <div class="donate-grid">
+                    <a href="https://www.paypal.me/AhmedElamir76/5" target="_blank" rel="noopener" class="donate-card" aria-label="Donate 5 dollars">
+                        <span class="donate-label">Supporter</span>
+                        <span class="donate-amount"><span class="currency">$</span>5</span>
+                        <span class="donate-desc">Covers a month of build server hosting</span>
+                        <span class="donate-card-cta">Donate <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="https://www.paypal.me/AhmedElamir76/10" target="_blank" rel="noopener" class="donate-card" aria-label="Donate 10 dollars">
+                        <span class="donate-label">Contributor</span>
+                        <span class="donate-amount"><span class="currency">$</span>10</span>
+                        <span class="donate-desc">Funds testing on a new hardware configuration</span>
+                        <span class="donate-card-cta">Donate <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="https://www.paypal.me/AhmedElamir76/20" target="_blank" rel="noopener" class="donate-card" aria-label="Donate 20 dollars">
+                        <span class="donate-label">Champion</span>
+                        <span class="donate-amount"><span class="currency">$</span>20</span>
+                        <span class="donate-desc">Sponsors a week of full-time development work</span>
+                        <span class="donate-card-cta">Donate <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+
+                <p class="donate-custom">
+                    Want to give a different amount?
+                    <a href="https://www.paypal.me/AhmedElamir76" target="_blank" rel="noopener">Choose your own on PayPal <i class="fas fa-external-link-alt" style="font-size:10px"></i></a>
+                </p>
+
+                <div class="donate-trust">
+                    <span class="donate-trust-item"><i class="fas fa-lock"></i> Secure via PayPal</span>
+                    <span class="donate-trust-item"><i class="fas fa-hand-holding-heart"></i> No recurring charges</span>
+                    <span class="donate-trust-item"><i class="fas fa-receipt"></i> One-time payment</span>
+                </div>
+            </div>
+        </section>
+
         <!-- Download CTA -->
         <section id="download" class="download-cta">
             <div class="reveal">
@@ -693,6 +811,7 @@
             <div class="footer-links">
                 <a href="#features">Features</a>
                 <a href="#philosophy">Philosophy</a>
+                <a href="#contribute">Contribute</a>
                 <a href="#download">Download</a>
             </div>
         </footer>
@@ -773,7 +892,6 @@
                     if (p.x > canvas.width) p.x = 0;
                     if (p.y < 0) p.y = canvas.height;
                     if (p.y > canvas.height) p.y = 0;
-
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, Math.max(0.1, p.r), 0, Math.PI * 2);
                     ctx.fillStyle = `rgba(212, 148, 58, ${p.opacity})`;
@@ -788,14 +906,10 @@
         (function initMouseGlow() {
             const glow = document.getElementById('mouse-glow');
             const hero = document.querySelector('.hero');
-
             hero.addEventListener('mousemove', (e) => {
                 const rect = hero.getBoundingClientRect();
-                const x = e.clientX - rect.left - 200;
-                const y = e.clientY - rect.top - 200;
-                glow.style.transform = `translate(${x}px, ${y}px)`;
+                glow.style.transform = `translate(${e.clientX - rect.left - 200}px, ${e.clientY - rect.top - 200}px)`;
             });
-
             hero.addEventListener('mouseleave', () => {
                 glow.style.transform = 'translate(-400px, -400px)';
             });
@@ -805,17 +919,15 @@
         (function initScrollReveal() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
                 });
             }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         })();
 
-        /* ── Toast Utility ── */
-        function showToast(msg, duration = 2500) {
+        /* ── Toast ── */
+        function showToast(msg, duration) {
+            duration = duration || 2500;
             const toast = document.getElementById('toast');
             toast.textContent = msg;
             toast.classList.add('show');
@@ -826,11 +938,7 @@
         function startDownload() {
             const landing = document.getElementById('landing-page');
             const terminal = document.getElementById('terminal-page');
-
-            /* Scroll to top first */
             window.scrollTo({ top: 0, behavior: 'instant' });
-
-            /* Fade transition */
             landing.style.transition = 'opacity 0.35s ease';
             landing.style.opacity = '0';
             setTimeout(() => {
@@ -862,12 +970,11 @@
 
             const chars = [];
             const intervals = [];
-            const CYCLE_SPEED = 45;       /* ms between random changes */
-            const STAGGER = 35;           /* ms delay per character before locking */
-            const BASE_DELAY = 500;       /* initial wait before any locking starts */
-            const REDIRECT_WAIT = 5000;   /* 5 seconds after full verification */
+            const CYCLE_SPEED = 45;
+            const STAGGER = 35;
+            const BASE_DELAY = 500;
+            const REDIRECT_WAIT = 5000;
 
-            /* Create character spans */
             for (let i = 0; i < TARGET_HASH.length; i++) {
                 const span = document.createElement('span');
                 span.className = 'hash-char';
@@ -875,7 +982,6 @@
                 container.appendChild(span);
                 chars.push(span);
 
-                /* Start random cycling */
                 const idx = i;
                 const interval = setInterval(() => {
                     chars[idx].textContent = HEX_CHARS[Math.floor(Math.random() * 16)];
@@ -883,41 +989,29 @@
                 intervals.push(interval);
             }
 
-            /* Track progress */
             let lockedCount = 0;
             const total = TARGET_HASH.length;
 
-            /* Stagger the lock-in */
             chars.forEach((span, i) => {
                 setTimeout(() => {
                     clearInterval(intervals[i]);
                     span.textContent = TARGET_HASH[i];
                     span.classList.add('locked');
                     lockedCount++;
-
-                    /* Update progress bar */
-                    const pct = (lockedCount / total) * 100;
-                    progressBar.style.width = pct + '%';
-
-                    /* When all locked */
-                    if (lockedCount === total) {
-                        onVerified();
-                    }
+                    progressBar.style.width = ((lockedCount / total) * 100) + '%';
+                    if (lockedCount === total) onVerified();
                 }, BASE_DELAY + i * STAGGER);
             });
 
             function onVerified() {
                 statusEl.textContent = 'Integrity verified — checksum matches.';
                 statusEl.classList.add('verified');
-
-                /* Countdown */
                 let remaining = REDIRECT_WAIT / 1000;
-                countdownEl.textContent = `Redirecting in ${remaining}s...`;
-
+                countdownEl.textContent = 'Redirecting in ' + remaining + 's...';
                 const countInterval = setInterval(() => {
                     remaining--;
                     if (remaining > 0) {
-                        countdownEl.textContent = `Redirecting in ${remaining}s...`;
+                        countdownEl.textContent = 'Redirecting in ' + remaining + 's...';
                     } else {
                         countdownEl.textContent = 'Redirecting now...';
                         clearInterval(countInterval);
@@ -927,15 +1021,13 @@
             }
         }
 
-        /* ── Navbar background on scroll ── */
+        /* ── Navbar scroll effect ── */
         (function initNavScroll() {
             const navbar = document.querySelector('.navbar');
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.style.background = 'rgba(12, 12, 12, 0.95)';
-                } else {
-                    navbar.style.background = 'rgba(12, 12, 12, 0.85)';
-                }
+                navbar.style.background = window.scrollY > 50
+                    ? 'rgba(12, 12, 12, 0.95)'
+                    : 'rgba(12, 12, 12, 0.85)';
             });
         })();
     </script>
