@@ -105,14 +105,14 @@
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
             text-align: center;
-            padding: 60px 24px;
+            padding: 60px 24px 80px;
             overflow: hidden;
         }
         .hero-glow-blue {
             position: absolute;
             width: 500px; height: 500px;
             background: radial-gradient(circle, rgba(88,166,255,0.06) 0%, transparent 70%);
-            top: 40%; left: 35%;
+            top: 30%; left: 30%;
             transform: translate(-50%, -50%);
             pointer-events: none;
         }
@@ -120,7 +120,7 @@
             position: absolute;
             width: 400px; height: 400px;
             background: radial-gradient(circle, rgba(61,214,140,0.05) 0%, transparent 70%);
-            top: 55%; right: 25%;
+            top: 60%; right: 20%;
             transform: translate(50%, -50%);
             pointer-events: none;
         }
@@ -173,9 +173,55 @@
             font-weight: 300;
             color: var(--fg-muted);
             max-width: 540px;
-            margin: 0 auto 48px;
+            margin: 0 auto 36px;
             line-height: 1.7;
         }
+
+        /* ── Preview Window ── */
+        .hero-preview {
+            position: relative;
+            width: min(780px, 90vw);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #0b1018;
+            box-shadow:
+                0 4px 20px rgba(0,0,0,0.4),
+                0 20px 60px rgba(0,0,0,0.3),
+                0 0 0 1px rgba(88,166,255,0.06),
+                0 0 80px rgba(88,166,255,0.04),
+                0 0 80px rgba(61,214,140,0.02);
+            margin-bottom: 40px;
+            animation: preview-float 6s ease-in-out infinite;
+        }
+        @keyframes preview-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .hero-preview-bar {
+            height: 32px;
+            background: #0e1520;
+            border-bottom: 1px solid #182030;
+            display: flex; align-items: center;
+            padding: 0 12px;
+            gap: 16px;
+        }
+        .preview-dots { display: flex; gap: 6px; }
+        .preview-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .preview-dot.red { background: #ff5f57; }
+        .preview-dot.yellow { background: #febc2e; }
+        .preview-dot.green { background: #28c840; }
+        .preview-bar-title {
+            flex: 1; text-align: center;
+            font-family: var(--font-mono);
+            font-size: 11px; color: #3d4f63;
+            letter-spacing: 0.5px;
+        }
+        .hero-preview-img {
+            width: 100%;
+            display: block;
+        }
+
         .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: center; }
         .btn-primary {
             display: inline-flex; align-items: center; gap: 10px;
@@ -528,6 +574,8 @@
             .philosophy-inner { padding: 36px 24px; }
             .philosophy-quote { font-size: 18px; }
             .hero-title { letter-spacing: 2px; }
+            .hero-preview { width: 95vw; }
+            .hero { padding: 40px 16px 80px; }
             .terminal-body { padding: 20px; }
             .hash-char { font-size: 12px; width: 7.2px; }
             .donate-grid { grid-template-columns: 1fr; max-width: 320px; }
@@ -541,6 +589,7 @@
             *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
             .reveal { opacity: 1; transform: none; }
             #particle-canvas { display: none; }
+            .hero-preview { animation: none; }
         }
 
         /* ── Scrollbar ── */
@@ -586,6 +635,20 @@
                 <p class="hero-subtitle">
                     The operating system that respects you. No telemetry. No subscriptions. No cloud tether. Just your computer, doing what you tell it to.
                 </p>
+
+                <!-- Preview Window -->
+                <div class="hero-preview">
+                    <div class="hero-preview-bar">
+                        <div class="preview-dots">
+                            <div class="preview-dot red"></div>
+                            <div class="preview-dot yellow"></div>
+                            <div class="preview-dot green"></div>
+                        </div>
+                        <span class="preview-bar-title">bazzilt 26.6 — qemu-system-x86_64</span>
+                    </div>
+                    <img class="hero-preview-img" src="https://z-cdn-media.chatglm.cn/files/55729b29-4c5a-40c0-af6e-9e5a8d0796de.png?auth_key=1881973542-0cf2733f1f4240e887581a7dad9b2804-0-ecf9705fbbed683c8d3698b2ad4c6fa6" alt="Bazzilt 26.6 running in a virtual machine with terminal and Firefox">
+                </div>
+
                 <div class="hero-actions">
                     <button class="btn-primary" id="hero-download" aria-label="Download Bazzilt OS">
                         <i class="fas fa-download"></i>
@@ -743,8 +806,8 @@
         <div class="terminal-window">
             <div class="terminal-header">
                 <div class="terminal-dot red"></div>
-                <div class="terminal-dot.yellow"></div>
-                <div class="terminal-dot.green"></div>
+                <div class="terminal-dot yellow"></div>
+                <div class="terminal-dot green"></div>
                 <span class="terminal-title">bazzilt-verify — bash</span>
             </div>
             <div class="terminal-body">
@@ -767,7 +830,7 @@
         /* ── Constants ── */
         var TARGET_HASH = '5acf7e3472ca574506a74bbaa40937f5bbf53cf2c95907eafa8215e3b067cfdb';
         var HEX_CHARS = '0123456789abcdef';
-        var REDIRECT_URL = 'https://pixeldrain.com/u/mmDEjTiT';
+        var REDIRECT_URL = 'https://pixeldrain.com/u/LWDesDFU';
 
         /* ── Particle Canvas ── */
         (function initParticles() {
